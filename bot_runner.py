@@ -15,3 +15,9 @@ bot = commands.Bot(
     prefix=config['bot_command_prefix'],
     initial_channels=[config['channel']]
 )
+
+@bot.event("on_start")
+async def on_start():
+    web_service = bot._ws
+    await web_service.send_privmsg(config['channel'], f"{config['bot_nickname']} is placed on the battlefield")
+
